@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "FeedbackViewController.h"
+#import "SettingsViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +19,31 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self addTabBarControllers];
     return YES;
+}
+
+-(void)addTabBarControllers {
+    FeedbackViewController* feedbackVC = [[FeedbackViewController alloc] init];
+    SettingsViewController* settingsVC = [[SettingsViewController alloc] init];
+    
+    UIImage* feedbackImage = [UIImage imageNamed:@"pressure.png"];
+    UITabBarItem* feedbackTabBarItem = [[UITabBarItem alloc] initWithTitle:@"Feedback" image:feedbackImage tag:0];
+    feedbackVC.tabBarItem = feedbackTabBarItem;
+    
+    UIImage* settingsImage = [UIImage imageNamed:@"settings.png"];
+    UITabBarItem* settingsTabBarItem = [[UITabBarItem alloc] initWithTitle:@"Settings" image:settingsImage tag:0];
+    settingsVC.tabBarItem = settingsTabBarItem;
+    
+    
+    NSArray* controllers = [NSArray arrayWithObjects:feedbackVC, settingsVC, nil];
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = controllers;
+    
+    self.window.rootViewController = self.tabBarController;
+    [self.window makeKeyAndVisible];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

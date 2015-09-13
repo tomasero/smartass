@@ -1,20 +1,24 @@
 //
-//  ViewController.m
+//  FeedbackViewController.m
 //  SmartAss
 //
-//  Created by Tomas Vega on 9/12/15.
+//  Created by Tomas Vega on 9/13/15.
 //  Copyright (c) 2015 Tomas Vega. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FeedbackViewController.h"
 #import "AFNetworking.h"
 
-
-@interface ViewController ()
+@interface FeedbackViewController ()
 
 @end
 
-@implementation ViewController
+@implementation FeedbackViewController
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,8 +36,8 @@
 - (void) setUI {
     int space_between = 15;
     int label_height = 30;
-
-
+    
+    
     
     self.grid = [[UIView alloc] initWithFrame:
                  CGRectMake(
@@ -134,9 +138,8 @@
         float flex2 = [[pressureDict objectForKey: @"flex2"] floatValue];
         float flex3 = [[pressureDict objectForKey: @"flex3"] floatValue];
         float flex4 = [[pressureDict objectForKey: @"flex4"] floatValue];
-
-//        float min = MIN(MIN(flex1, flex2), MIN(flex3, flex4));
-        float min = 3800;
+        
+        float min = 3800; //paul's weight
         float total = flex1 + flex2 + flex3 + flex4 - min*4;
         if(total < 0) {
             total = 1;
@@ -153,15 +156,10 @@
         [self.cell2 updatePressure: flex2/total];
         [self.cell3 updatePressure: flex3/total];
         [self.cell4 updatePressure: flex4/total];
-//        [self.grid setNeedsDisplay];
+        //        [self.grid setNeedsDisplay];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
