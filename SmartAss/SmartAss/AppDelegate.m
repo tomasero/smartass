@@ -38,6 +38,8 @@
     
     NSArray* controllers = [NSArray arrayWithObjects:self.feedbackVC, self.settingsVC, nil];
     self.tabBarController = [[UITabBarController alloc] init];
+    [[UITabBar appearance] setTintColor:[UIColor purpleColor]];
+    [[UITabBar appearance] setBarTintColor: [UIColor whiteColor]];
     self.tabBarController.viewControllers = controllers;
     
     self.window.rootViewController = self.tabBarController;
