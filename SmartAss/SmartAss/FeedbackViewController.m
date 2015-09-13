@@ -138,9 +138,9 @@
     float flex4 = [[pressureDict objectForKey: @"flex4"] floatValue];
     
     //        float min = MIN(MIN(flex1, flex2), MIN(flex3, flex4));
-    float min = 945;
+    float min = 938;
 //    float total = flex1 + flex2 + flex3 + flex4 - min*4;
-    float total = 1024.0 - min;
+    float total = 970 - min;
     if(total < 0) {
         total = 1;
     }
@@ -149,6 +149,12 @@
     flex2 = MAX(flex2-min, 0);
     flex3 = MAX(flex3-min, 0);
     flex4 = MAX(flex4-min, 0);
+    
+    flex1 = MIN(total, flex1);
+    flex2 = MIN(total, flex2);
+    flex3 = MIN(total, flex3);
+    flex4 = MIN(total, flex4);
+
     
     //        NSLog(@"%.1f %.1f %.1f %.1f", flex1, flex2, flex3, flex4);
     
