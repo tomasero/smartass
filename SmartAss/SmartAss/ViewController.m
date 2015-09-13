@@ -80,7 +80,7 @@
 }
 
 - (void) updatePressure {
-    NSURL *baseURL = [NSURL URLWithString:@"http://localhost:3000"];
+    NSURL *baseURL = [NSURL URLWithString:@"http://buttpad.herokuapp.com"];
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager manager] initWithBaseURL:baseURL];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -94,7 +94,7 @@
         NSNumber *flex2 = [pressureDict objectForKey: @"flex2"];
         NSNumber *flex3 = [pressureDict objectForKey: @"flex3"];
         NSNumber *flex4 = [pressureDict objectForKey: @"flex4"];
-        NSLog(@"%@", flex1);
+//        NSLog(@"%@", flex1);
         
         [self.cell1 updatePressure: flex1];
 //        [self.cell1 removeFromSuperview];

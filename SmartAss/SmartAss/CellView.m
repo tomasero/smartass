@@ -36,7 +36,7 @@
     green:0.0
     blue:0.0
     alpha:(float)[percentage floatValue]/100];
-    NSLog(@"%f",[percentage floatValue]/100);
+//    NSLog(@"%f",[percentage floatValue]/100);
     self.backgroundColor = pressureColor;
     [self setNeedsDisplay];
     [self.superview setNeedsDisplay];
