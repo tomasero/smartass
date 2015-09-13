@@ -130,15 +130,29 @@
                                                                      options:kNilOptions
                                                                        error:&error
                                       ];
-        NSNumber *flex1 = [pressureDict objectForKey: @"flex1"];
-        NSNumber *flex2 = [pressureDict objectForKey: @"flex2"];
-        NSNumber *flex3 = [pressureDict objectForKey: @"flex3"];
-        NSNumber *flex4 = [pressureDict objectForKey: @"flex4"];
+        float flex1 = [[pressureDict objectForKey: @"flex1"] floatValue];
+        float flex2 = [[pressureDict objectForKey: @"flex2"] floatValue];
+        float flex3 = [[pressureDict objectForKey: @"flex3"] floatValue];
+        float flex4 = [[pressureDict objectForKey: @"flex4"] floatValue];
+
+//        float min = MIN(MIN(flex1, flex2), MIN(flex3, flex4));
+        float min = 3800;
+        float total = flex1 + flex2 + flex3 + flex4 - min*4;
+        if(total < 0) {
+            total = 1;
+        }
         
-        [self.cell1 updatePressure: flex1];
-        [self.cell2 updatePressure: flex2];
-        [self.cell3 updatePressure: flex3];
-        [self.cell4 updatePressure: flex4];
+        flex1 = MAX(flex1-min, 0);
+        flex2 = MAX(flex2-min, 0);
+        flex3 = MAX(flex3-min, 0);
+        flex4 = MAX(flex4-min, 0);
+        
+        NSLog(@"%.1f %.1f %.1f %.1f", flex1, flex2, flex3, flex4);
+        
+        [self.cell1 updatePressure: flex1/total];
+        [self.cell2 updatePressure: flex2/total];
+        [self.cell3 updatePressure: flex3/total];
+        [self.cell4 updatePressure: flex4/total];
 //        [self.grid setNeedsDisplay];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);

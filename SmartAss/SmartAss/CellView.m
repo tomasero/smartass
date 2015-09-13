@@ -25,8 +25,9 @@
     return self;
 }
 
-- (void) updatePressure: (NSNumber *) percentage {
-    float alpha = [percentage floatValue]/100;
+- (void) updatePressure: (float) percentage {
+//    float alpha = [percentage floatValue]/100;
+    float alpha = percentage;
     UIColor *pressureColor = [UIColor colorWithRed:1.0*alpha
                                              green:1.0*(1-alpha)
                                               blue:0.0

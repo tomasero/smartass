@@ -10,6 +10,6 @@
 
 @interface CellView : UIView
 
-- (void) updatePressure: (NSNumber *) percentage;
+- (void) updatePressure: (float) percentage;
 
 @end
