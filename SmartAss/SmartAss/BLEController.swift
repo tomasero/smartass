@@ -27,10 +27,11 @@ enum ConnectionStatus:Int {
 
 @objc protocol BLEDelegate: Any {
     func didReceiveData(data:NSData)
+    func btConnectionChanged(state:Bool)
 }
 
 
-class BLEController: NSObject, CBCentralManagerDelegate, BLEPeripheralDelegate, BLEDelegate {
+class BLEController: NSObject, CBCentralManagerDelegate, BLEPeripheralDelegate {
     private var cm:CBCentralManager?
     private var currentAlertView:UIAlertController?
     private var currentPeripheral:BLEPeripheral?
@@ -157,6 +158,7 @@ class BLEController: NSObject, CBCentralManagerDelegate, BLEPeripheralDelegate, 
         
         
         println("connected!")
+        
         currentAlertView?.dismissViewControllerAnimated(true, completion: nil)
         
         //Connecting in DFU mode, discover specific services
@@ -184,6 +186,8 @@ class BLEController: NSObject, CBCentralManagerDelegate, BLEPeripheralDelegate, 
             }
             
         }
+        
+        self.dataDelegate.btConnectionChanged(true);
     }
     
     
@@ -248,6 +252,8 @@ class BLEController: NSObject, CBCentralManagerDelegate, BLEPeripheralDelegate, 
         
         // Dereference mode controllers
 //        dereferenceModeController()
+        
+        self.dataDelegate.btConnectionChanged(false);
         
     }
     
