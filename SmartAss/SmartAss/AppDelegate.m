@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "FeedbackViewController.h"
-#import "SettingsViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,19 +24,19 @@
 }
 
 -(void)addTabBarControllers {
-    FeedbackViewController* feedbackVC = [[FeedbackViewController alloc] init];
-    SettingsViewController* settingsVC = [[SettingsViewController alloc] init];
+    self.feedbackVC = [[FeedbackViewController alloc] init];
+    self.settingsVC = [[SettingsViewController alloc] init];
     
     UIImage* feedbackImage = [UIImage imageNamed:@"pressure.png"];
     UITabBarItem* feedbackTabBarItem = [[UITabBarItem alloc] initWithTitle:@"Feedback" image:feedbackImage tag:0];
-    feedbackVC.tabBarItem = feedbackTabBarItem;
+    self.feedbackVC.tabBarItem = feedbackTabBarItem;
     
     UIImage* settingsImage = [UIImage imageNamed:@"settings.png"];
     UITabBarItem* settingsTabBarItem = [[UITabBarItem alloc] initWithTitle:@"Settings" image:settingsImage tag:0];
-    settingsVC.tabBarItem = settingsTabBarItem;
+    self.settingsVC.tabBarItem = settingsTabBarItem;
     
     
-    NSArray* controllers = [NSArray arrayWithObjects:feedbackVC, settingsVC, nil];
+    NSArray* controllers = [NSArray arrayWithObjects:self.feedbackVC, self.settingsVC, nil];
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = controllers;
     

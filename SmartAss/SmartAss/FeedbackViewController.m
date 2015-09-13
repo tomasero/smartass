@@ -28,7 +28,7 @@
     
     [NSTimer scheduledTimerWithTimeInterval:.25
                                      target:self
-                                   selector:@selector(updatePressure)
+                                   selector:@selector(getPressure)
                                    userInfo:nil
                                     repeats:YES];
 }
@@ -123,7 +123,7 @@
     [self.view addSubview: self.grid];
 }
 
-- (void) updatePressure {
+- (void) getPressure {
     NSURL *baseURL = [NSURL URLWithString:@"http://buttpad.herokuapp.com"];
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager manager] initWithBaseURL:baseURL];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -160,6 +160,16 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+- (void) calibrateButtonClick: (id) sender {
+    UIButton *calibrateButton = (UIButton *)sender;
+    calibrateButton.alpha = 0.5;
+}
+
+- (void) calibrateButtonRelease: (id) sender {
+    UIButton *calibrateButton = (UIButton *)sender;
+    calibrateButton.alpha = 1;
 }
 
 @end

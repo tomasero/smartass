@@ -17,4 +17,7 @@
 @property (nonatomic, strong) CellView *cell3;
 @property (nonatomic, strong) CellView *cell4;
 
+- (void) calibrateButtonClick: (id) sender;
+- (void) calibrateButtonRelease: (id) sender;
+
 @end

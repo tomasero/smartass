@@ -19,7 +19,6 @@
     {
         [self setUI];
     }
-    
     return self;
 }
 
@@ -44,6 +43,9 @@
         self.frame.size.width/2,
         self.cellSwitch.frame.size.height
         )];
+    self.label.userInteractionEnabled = YES;
+    switchView.userInteractionEnabled = YES;
+    self.cellSwitch.userInteractionEnabled = YES;
     [switchView addSubview:self.cellSwitch];
     [self addSubview:switchView];
 }
