@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedbackViewController.h"
 
 @interface SettingsViewController : UIViewController
+
+@property (nonatomic, strong) FeedbackViewController *feedbackVC;
+@property (assign) int notificationState;
+@property (assign) int activeResponseState;
+@property (assign) int juggleModeState;
 
 @end

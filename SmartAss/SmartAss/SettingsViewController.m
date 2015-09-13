@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "SettingsCellView.h"
+#import "AppDelegate.h"
 
 @interface SettingsViewController ()
 
@@ -17,6 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    self.feedbackVC = appDelegate.feedbackVC;
+    self.notificationState = 0;
+    self.activeResponseState = 0;
+    self.juggleModeState = 0;
     [self setUI];
     // Do any additional setup after loading the view.
 }
@@ -31,9 +37,9 @@
     SettingsCellView *notificationCell = [[SettingsCellView alloc] initWithFrame:
                                 CGRectMake(
                                            0,
-                                           topOffset,
+                                           60,
                                            self.view.frame.size.width,
-                                           settingCellHeight
+                                           40
                                            )
                                 ];
     [notificationCell setCellName:@"Notifications"];
@@ -41,9 +47,9 @@
     SettingsCellView *activeResponseCell = [[SettingsCellView alloc] initWithFrame:
                                                 CGRectMake(
                                                            0,
-                                                           topOffset + settingCellHeight + spaceBetween,
+                                                           110,
                                                            self.view.frame.size.width,
-                                                           settingCellHeight
+                                                           40
                                                            )
                                                 ];
     
@@ -52,9 +58,9 @@
     SettingsCellView *juggleModeCell = [[SettingsCellView alloc] initWithFrame:
                                           CGRectMake(
                                                      0,
-                                                     topOffset + (settingCellHeight + spaceBetween)*2,
+                                                     160,
                                                      self.view.frame.size.width,
-                                                     settingCellHeight
+                                                    40
                                                      )
                                           ];
     [juggleModeCell setCellName:@"Juggle Mode"];
@@ -62,35 +68,69 @@
     [notificationCell.cellSwitch addTarget:self
                                     action:@selector(notificationToggle:)
                           forControlEvents:UIControlEventValueChanged];
-    
+
     [activeResponseCell.cellSwitch addTarget:self
                                     action:@selector(activeResponseToggle:)
                           forControlEvents:UIControlEventValueChanged];
-    
+
     [juggleModeCell.cellSwitch addTarget:self
                                     action:@selector(juggleModeToggle:)
                           forControlEvents:UIControlEventValueChanged];
 
+    UIButton *calibrateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    calibrateButton.frame = CGRectMake(
+                                       (self.view.frame.size.width - 120)/2,
+                                       310,
+                                       120,
+                                       50);
+    [calibrateButton setBackgroundColor:[UIColor purpleColor]];
+    [calibrateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [calibrateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [calibrateButton setTitle:@"Calibrate" forState:UIControlStateNormal];
+    calibrateButton.layer.cornerRadius = 5;
+    calibrateButton.layer.masksToBounds = YES;
+    [self.view addSubview:calibrateButton];
+    
+    [calibrateButton addTarget:self.feedbackVC
+                    action:@selector(calibrateButtonClick:)
+                    forControlEvents:UIControlEventTouchDown];
+
+    [calibrateButton addTarget:self.feedbackVC
+                        action:@selector(calibrateButtonRelease:)
+              forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:notificationCell];
     [self.view addSubview:activeResponseCell];
     [self.view addSubview:juggleModeCell];
 }
 
+
+
 - (void) notificationToggle: (id) sender {
     UISwitch *mySwitch = (UISwitch *)sender;
     if ([mySwitch isOn]) {
-        //activate notifications
+        self.notificationState = 1;
     } else {
-        //off
+        self.notificationState = 0;
     }
 }
 
 - (void) activeResponseToggle: (id) sender {
-    NSLog(@"%@", sender);
+    UISwitch *mySwitch = (UISwitch *)sender;
+    if ([mySwitch isOn]) {
+        self.activeResponseState = 1;
+    } else {
+        self.activeResponseState = 0;
+    }
 }
 
 - (void) juggleModeToggle: (id) sender {
-    NSLog(@"%@", sender);
+    UISwitch *mySwitch = (UISwitch *)sender;
+    if ([mySwitch isOn]) {
+        self.juggleModeState = 1;
+    } else {
+        self.juggleModeState = 0;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -11,7 +11,7 @@
 @interface SettingsCellView : UIView
 
 @property (nonatomic, strong) UILabel *label;
-@property (nonatomic, strong) UISwitch *cellSwitch;
+@property (retain, nonatomic) UISwitch *cellSwitch;
 
 - (void) setCellName: (NSString *) name;
 

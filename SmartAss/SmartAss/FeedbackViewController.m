@@ -128,6 +128,7 @@
     [self.view addSubview: self.grid];
 }
 
+
 - (void) updatePressure: (NSDictionary*) pressureDict {
     
     NSLog(@"dict: %@", pressureDict);
@@ -184,6 +185,16 @@
 }
 
 
+- (void) calibrateButtonClick: (id) sender {
+    UIButton *calibrateButton = (UIButton *)sender;
+    calibrateButton.alpha = 0.5;
+}
+
+- (void) calibrateButtonRelease: (id) sender {
+    UIButton *calibrateButton = (UIButton *)sender;
+    calibrateButton.alpha = 1;
+}
+
 
 NSMutableString *currData = nil;
 - (void) didReceiveData: (NSData*) data {
@@ -225,4 +236,5 @@ NSMutableString *currData = nil;
         [currData setString:[currData substringFromIndex:range.location+1]];
     }
 }
+
 @end

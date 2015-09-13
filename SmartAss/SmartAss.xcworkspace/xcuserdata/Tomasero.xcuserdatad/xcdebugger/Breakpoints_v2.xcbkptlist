@@ -50,11 +50,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SmartAss/SettingsCellView.m"
-            timestampString = "463857984.064621"
+            timestampString = "463861840.828086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "-setUI"
             landmarkType = "5">
          </BreakpointContent>
