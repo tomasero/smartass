@@ -37,9 +37,9 @@
     SettingsCellView *notificationCell = [[SettingsCellView alloc] initWithFrame:
                                 CGRectMake(
                                            0,
-                                           60,
+                                           topOffset,
                                            self.view.frame.size.width,
-                                           40
+                                           settingCellHeight
                                            )
                                 ];
     [notificationCell setCellName:@"Notifications"];
@@ -54,6 +54,9 @@
                                                 ];
     
     [activeResponseCell setCellName:@"Active Response"];
+    
+//    activeResponseCell.cellSwitch.userInteractionEnabled = YES;
+//    activeResponseCell.cellSwitch.enabled = YES;
     
     SettingsCellView *juggleModeCell = [[SettingsCellView alloc] initWithFrame:
                                           CGRectMake(

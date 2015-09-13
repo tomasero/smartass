@@ -13,7 +13,6 @@
 
 @interface FeedbackViewController : UIViewController <BLEDelegate>
 
-
 @property (nonatomic, strong) UIView *grid;
 @property (nonatomic, strong) CellView *cell1;
 @property (nonatomic, strong) CellView *cell2;
@@ -22,6 +21,11 @@
 
 - (void) calibrateButtonClick: (id) sender;
 - (void) calibrateButtonRelease: (id) sender;
+
+//BLE
+@property (nonatomic, strong) UIView *btConnectionIndicator;
 @property (nonatomic, strong) BLEController *ble;
+
+- (void) btConnectionChanged: (BOOL) state;
 
 @end

@@ -42,7 +42,18 @@
     int space_between = 15;
     int label_height = 30;
     
-    
+    self.btConnectionIndicator = [[UIView alloc] initWithFrame:
+                                  CGRectMake(
+                                             self.view.frame.size.width - 50, 30,
+                                             30, 30
+                                             )
+                                  ];
+    self.btConnectionIndicator.layer.cornerRadius = 15;
+    self.btConnectionIndicator.layer.masksToBounds = YES;
+    self.btConnectionIndicator.layer.borderColor = [UIColor blueColor].CGColor;
+    self.btConnectionIndicator.backgroundColor = [UIColor blueColor];
+    self.btConnectionIndicator.alpha = 0.1f;
+    [self.view addSubview:self.btConnectionIndicator];
     
     self.grid = [[UIView alloc] initWithFrame:
                  CGRectMake(
@@ -165,6 +176,8 @@
     [self.cell4 updatePressure: flex4/total];
 }
 
+//http: not used anymore
+
 - (void) getPressure {
     NSURL *baseURL = [NSURL URLWithString:@"http://buttpad.herokuapp.com"];
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager manager] initWithBaseURL:baseURL];
@@ -193,6 +206,10 @@
 - (void) calibrateButtonRelease: (id) sender {
     UIButton *calibrateButton = (UIButton *)sender;
     calibrateButton.alpha = 1;
+}
+
+- (void) btConnectionChanged: (BOOL) state {
+    self.btConnectionIndicator.alpha = state ? 1.0f : 0.1f;
 }
 
 
