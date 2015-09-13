@@ -1,28 +1,26 @@
 //
-//  ViewController.m
+//  FeedbackViewController.m
 //  SmartAss
 //
-//  Created by Tomas Vega on 9/12/15.
+//  Created by Tomas Vega on 9/13/15.
 //  Copyright (c) 2015 Tomas Vega. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FeedbackViewController.h"
 #import "AFNetworking.h"
 #import "Extensions.m"
 
-//
-//@interface ViewController() {
-//    
-//@private
-//    float flex1;
-//    float flex2;
-//    float flex3;
-//    float flex4;
-//    
-//}
-//@end
 
-@implementation ViewController
+@interface FeedbackViewController ()
+
+@end
+
+@implementation FeedbackViewController
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 
 - (void)viewDidLoad {
@@ -43,8 +41,8 @@
 - (void) setUI {
     int space_between = 15;
     int label_height = 30;
-
-
+    
+    
     
     self.grid = [[UIView alloc] initWithFrame:
                  CGRectMake(
@@ -140,8 +138,9 @@
     float flex4 = [[pressureDict objectForKey: @"flex4"] floatValue];
     
     //        float min = MIN(MIN(flex1, flex2), MIN(flex3, flex4));
-    float min = 200;
-    float total = flex1 + flex2 + flex3 + flex4 - min*4;
+    float min = 945;
+//    float total = flex1 + flex2 + flex3 + flex4 - min*4;
+    float total = 1024.0 - min;
     if(total < 0) {
         total = 1;
     }
@@ -173,16 +172,12 @@
 
 
         [self updatePressure: pressureDict];
-//        [self.grid setNeedsDisplay];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 NSMutableString *currData = nil;
 - (void) didReceiveData: (NSData*) data {
@@ -190,29 +185,38 @@ NSMutableString *currData = nil;
         currData =  [[NSMutableString alloc] init];
     }
     // act on data
-    NSLog(@"received data: %@", [data stringRepresentation]);
+//    NSLog(@"received data: %@", [data stringRepresentation]);
 
     NSString *s = [data stringRepresentation];
     
     [currData appendString:s];
+//    NSLog(@"currData: %@", currData);
     
     NSRange range = [s rangeOfString:@"}"];
     
     if(range.location != NSNotFound) {
         
-        NSString *ss = [currData substringToIndex:range.location];
-        NSLog(@"%@", ss);
+        NSRange r1 = [currData rangeOfString:@"{"];
+        if(r1.location != NSNotFound) {
+            [currData setString:[currData substringFromIndex:r1.location]];
+            
+            NSRange range = [currData rangeOfString:@"}"];
+
+            NSString *ss = [currData substringToIndex:range.location+1];
+//            NSLog(@"%@", ss);
+            
+            NSData *d = [ss dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+            
+            
+            NSError* error;
+            NSDictionary* pressureDict = [NSJSONSerialization JSONObjectWithData:d options:kNilOptions error:&error];
+            
+            [self updatePressure:pressureDict];
+        }
         
-        NSData *d = [ss dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
         
-        
-        NSError* error;
-        NSDictionary* pressureDict = [NSJSONSerialization JSONObjectWithData:d options:kNilOptions error:&error];
-        
-        [self updatePressure:pressureDict];
-        
-        [currData setString:[currData substringFromIndex:range.location]];
+        NSRange range = [currData rangeOfString:@"}"];
+        [currData setString:[currData substringFromIndex:range.location+1]];
     }
 }
-
 @end
