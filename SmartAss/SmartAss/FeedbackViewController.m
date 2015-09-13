@@ -8,6 +8,8 @@
 
 #import "FeedbackViewController.h"
 #import "AFNetworking.h"
+#import "Extensions.m"
+
 
 @interface FeedbackViewController ()
 
@@ -20,17 +22,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
     [self setUI];
     
-    [NSTimer scheduledTimerWithTimeInterval:.25
-                                     target:self
-                                   selector:@selector(getPressure)
-                                   userInfo:nil
-                                    repeats:YES];
+//    [NSTimer scheduledTimerWithTimeInterval:.25
+//                                     target:self
+//                                   selector:@selector(getPressure)
+//                                   userInfo:nil
+//                                    repeats:YES];
+    
+    self.ble = [[BLEController alloc] initWithUIdelegate:self dataDelegate:self];
 }
 
 - (void) setUI {
@@ -123,6 +128,37 @@
     [self.view addSubview: self.grid];
 }
 
+
+- (void) updatePressure: (NSDictionary*) pressureDict {
+    
+    NSLog(@"dict: %@", pressureDict);
+    
+    float flex1 = [[pressureDict objectForKey: @"flex1"] floatValue];
+    float flex2 = [[pressureDict objectForKey: @"flex2"] floatValue];
+    float flex3 = [[pressureDict objectForKey: @"flex3"] floatValue];
+    float flex4 = [[pressureDict objectForKey: @"flex4"] floatValue];
+    
+    //        float min = MIN(MIN(flex1, flex2), MIN(flex3, flex4));
+    float min = 945;
+//    float total = flex1 + flex2 + flex3 + flex4 - min*4;
+    float total = 1024.0 - min;
+    if(total < 0) {
+        total = 1;
+    }
+    
+    flex1 = MAX(flex1-min, 0);
+    flex2 = MAX(flex2-min, 0);
+    flex3 = MAX(flex3-min, 0);
+    flex4 = MAX(flex4-min, 0);
+    
+    //        NSLog(@"%.1f %.1f %.1f %.1f", flex1, flex2, flex3, flex4);
+    
+    [self.cell1 updatePressure: flex1/total];
+    [self.cell2 updatePressure: flex2/total];
+    [self.cell3 updatePressure: flex3/total];
+    [self.cell4 updatePressure: flex4/total];
+}
+
 - (void) getPressure {
     NSURL *baseURL = [NSURL URLWithString:@"http://buttpad.herokuapp.com"];
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager manager] initWithBaseURL:baseURL];
@@ -134,33 +170,14 @@
                                                                      options:kNilOptions
                                                                        error:&error
                                       ];
-        float flex1 = [[pressureDict objectForKey: @"flex1"] floatValue];
-        float flex2 = [[pressureDict objectForKey: @"flex2"] floatValue];
-        float flex3 = [[pressureDict objectForKey: @"flex3"] floatValue];
-        float flex4 = [[pressureDict objectForKey: @"flex4"] floatValue];
-        
-        float min = 3800; //paul's weight
-        float total = flex1 + flex2 + flex3 + flex4 - min*4;
-        if(total < 0) {
-            total = 1;
-        }
-        
-        flex1 = MAX(flex1-min, 0);
-        flex2 = MAX(flex2-min, 0);
-        flex3 = MAX(flex3-min, 0);
-        flex4 = MAX(flex4-min, 0);
-        
-        NSLog(@"%.1f %.1f %.1f %.1f", flex1, flex2, flex3, flex4);
-        
-        [self.cell1 updatePressure: flex1/total];
-        [self.cell2 updatePressure: flex2/total];
-        [self.cell3 updatePressure: flex3/total];
-        [self.cell4 updatePressure: flex4/total];
-        //        [self.grid setNeedsDisplay];
+
+
+        [self updatePressure: pressureDict];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
 }
+
 
 - (void) calibrateButtonClick: (id) sender {
     UIButton *calibrateButton = (UIButton *)sender;
@@ -170,6 +187,48 @@
 - (void) calibrateButtonRelease: (id) sender {
     UIButton *calibrateButton = (UIButton *)sender;
     calibrateButton.alpha = 1;
+}
+
+
+NSMutableString *currData = nil;
+- (void) didReceiveData: (NSData*) data {
+    if(currData == nil) {
+        currData =  [[NSMutableString alloc] init];
+    }
+    // act on data
+//    NSLog(@"received data: %@", [data stringRepresentation]);
+
+    NSString *s = [data stringRepresentation];
+    
+    [currData appendString:s];
+//    NSLog(@"currData: %@", currData);
+    
+    NSRange range = [s rangeOfString:@"}"];
+    
+    if(range.location != NSNotFound) {
+        
+        NSRange r1 = [currData rangeOfString:@"{"];
+        if(r1.location != NSNotFound) {
+            [currData setString:[currData substringFromIndex:r1.location]];
+            
+            NSRange range = [currData rangeOfString:@"}"];
+
+            NSString *ss = [currData substringToIndex:range.location+1];
+//            NSLog(@"%@", ss);
+            
+            NSData *d = [ss dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+            
+            
+            NSError* error;
+            NSDictionary* pressureDict = [NSJSONSerialization JSONObjectWithData:d options:kNilOptions error:&error];
+            
+            [self updatePressure:pressureDict];
+        }
+        
+        
+        NSRange range = [currData rangeOfString:@"}"];
+        [currData setString:[currData substringFromIndex:range.location+1]];
+    }
 }
 
 @end

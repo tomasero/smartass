@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "CellView.h"
 
-@interface FeedbackViewController : UIViewController
+#import "SmartAss-Swift.h"
+
+@interface FeedbackViewController : UIViewController <BLEDelegate>
+
 
 @property (nonatomic, strong) UIView *grid;
 @property (nonatomic, strong) CellView *cell1;
@@ -19,5 +22,6 @@
 
 - (void) calibrateButtonClick: (id) sender;
 - (void) calibrateButtonRelease: (id) sender;
+@property (nonatomic, strong) BLEController *ble;
 
 @end

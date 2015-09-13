@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5F84BD88FA2557A50790E49C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7526205770F65127D32CBAE6 /* libPods.a */; };
+		8F5B7ADE1BA5D615007BDEA0 /* BLEPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B7ADB1BA5D615007BDEA0 /* BLEPeripheral.swift */; };
+		8F5B7ADF1BA5D615007BDEA0 /* BLEDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B7ADC1BA5D615007BDEA0 /* BLEDevice.swift */; };
+		8F5B7AE01BA5D615007BDEA0 /* BLEController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B7ADD1BA5D615007BDEA0 /* BLEController.swift */; };
+		8F5B7AE31BA5DA1B007BDEA0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B7AE11BA5DA1B007BDEA0 /* Constants.swift */; };
+		8F5B7AE41BA5DA1B007BDEA0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B7AE21BA5DA1B007BDEA0 /* Extensions.swift */; };
+		8F5B7AE61BA5EBDA007BDEA0 /* Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B7AE51BA5EBDA007BDEA0 /* Extensions.m */; };
 		FF2BF0131BA5D87200D406CD /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2BF0121BA5D87200D406CD /* FeedbackViewController.m */; };
 		FF2BF0161BA5D91800D406CD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2BF0151BA5D91800D406CD /* SettingsViewController.m */; };
 		FF2BF01A1BA5DC6500D406CD /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2BF0181BA5DC6500D406CD /* settings.png */; };
@@ -36,6 +42,13 @@
 		59797C245C3E57F22E5BD15E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7526205770F65127D32CBAE6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7635DF66F873D3DE50FED166 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8F5B7ADA1BA5D614007BDEA0 /* SmartAss-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartAss-Bridging-Header.h"; sourceTree = "<group>"; };
+		8F5B7ADB1BA5D615007BDEA0 /* BLEPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEPeripheral.swift; sourceTree = "<group>"; };
+		8F5B7ADC1BA5D615007BDEA0 /* BLEDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEDevice.swift; sourceTree = "<group>"; };
+		8F5B7ADD1BA5D615007BDEA0 /* BLEController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEController.swift; sourceTree = "<group>"; };
+		8F5B7AE11BA5DA1B007BDEA0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8F5B7AE21BA5DA1B007BDEA0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8F5B7AE51BA5EBDA007BDEA0 /* Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Extensions.m; sourceTree = "<group>"; };
 		FF2BF0111BA5D87200D406CD /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		FF2BF0121BA5D87200D406CD /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		FF2BF0141BA5D91800D406CD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -130,6 +143,11 @@
 				FF2BF0171BA5DC5100D406CD /* assets */,
 				FF9EC49E1BA498E500B6A210 /* AppDelegate.h */,
 				FF9EC49F1BA498E500B6A210 /* AppDelegate.m */,
+				FF9EC4A11BA498E500B6A210 /* ViewController.h */,
+				FF9EC4A21BA498E500B6A210 /* ViewController.m */,
+				8F5B7ADB1BA5D615007BDEA0 /* BLEPeripheral.swift */,
+				8F5B7ADC1BA5D615007BDEA0 /* BLEDevice.swift */,
+				8F5B7ADD1BA5D615007BDEA0 /* BLEController.swift */,
 				FF2BF0141BA5D91800D406CD /* SettingsViewController.h */,
 				FF2BF0151BA5D91800D406CD /* SettingsViewController.m */,
 				FF2BF0111BA5D87200D406CD /* FeedbackViewController.h */,
@@ -142,6 +160,7 @@
 				FF2BF01D1BA5E75000D406CD /* SettingsCellView.m */,
 				FF9EC4C21BA4CA1100B6A210 /* CellView.h */,
 				FF9EC4C31BA4CA1100B6A210 /* CellView.m */,
+				8F5B7ADA1BA5D614007BDEA0 /* SmartAss-Bridging-Header.h */,
 			);
 			path = SmartAss;
 			sourceTree = "<group>";
@@ -149,8 +168,11 @@
 		FF9EC49A1BA498E500B6A210 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8F5B7AE11BA5DA1B007BDEA0 /* Constants.swift */,
+				8F5B7AE21BA5DA1B007BDEA0 /* Extensions.swift */,
 				FF9EC49B1BA498E500B6A210 /* Info.plist */,
 				FF9EC49C1BA498E500B6A210 /* main.m */,
+				8F5B7AE51BA5EBDA007BDEA0 /* Extensions.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -311,11 +333,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF9EC4C41BA4CA1100B6A210 /* CellView.m in Sources */,
+				8F5B7AE41BA5DA1B007BDEA0 /* Extensions.swift in Sources */,
+				8F5B7ADF1BA5D615007BDEA0 /* BLEDevice.swift in Sources */,
+				FF9EC4A31BA498E500B6A210 /* ViewController.m in Sources */,
 				FF2BF0131BA5D87200D406CD /* FeedbackViewController.m in Sources */,
 				FF2BF0161BA5D91800D406CD /* SettingsViewController.m in Sources */,
 				FF2BF01E1BA5E75000D406CD /* SettingsCellView.m in Sources */,
 				FF9EC4A01BA498E500B6A210 /* AppDelegate.m in Sources */,
+				8F5B7AE01BA5D615007BDEA0 /* BLEController.swift in Sources */,
 				FF9EC49D1BA498E500B6A210 /* main.m in Sources */,
+				8F5B7ADE1BA5D615007BDEA0 /* BLEPeripheral.swift in Sources */,
+				8F5B7AE31BA5DA1B007BDEA0 /* Constants.swift in Sources */,
+				8F5B7AE61BA5EBDA007BDEA0 /* Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,12 +471,15 @@
 			baseConfigurationReference = 59797C245C3E57F22E5BD15E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SmartAss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SmartAss/SmartAss-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/BuildHeaders\"/**";
 			};
 			name = Debug;
@@ -457,12 +489,14 @@
 			baseConfigurationReference = 7635DF66F873D3DE50FED166 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SmartAss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SmartAss/SmartAss-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/BuildHeaders\"/**";
 			};
 			name = Release;
