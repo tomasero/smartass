@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E3AA5FC9-E693-4A16-B440-84398B672845</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SmartAss</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>15E03A522F4BDE5BAD02AA80E006EC4605D2C5D3</key>
+		<string>https://github.com/tomasero/smartass</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SmartAss/SmartAss.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>15E03A522F4BDE5BAD02AA80E006EC4605D2C5D3</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/tomasero/smartass</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>15E03A522F4BDE5BAD02AA80E006EC4605D2C5D3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>15E03A522F4BDE5BAD02AA80E006EC4605D2C5D3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>smartass</string>
+		</dict>
+	</array>
+</dict>
+</plist>
